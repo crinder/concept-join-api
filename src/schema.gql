@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Concept {
+  id: Int!
+  name: String!
+  notes: [Note!]!
+}
+
+input CreateConceptInput {
+  name: String!
+  noteIds: [Int!]
+}
+
+input CreateNoteInput {
+  conceptIds: [Int!]!
+  content: String!
+  title: String!
+}
+
+type Mutation {
+  createConcept(input: CreateConceptInput!): Concept!
+  createNote(input: CreateNoteInput!): Note!
+  deleteConcept(id: Int!): Concept!
+  deleteNote(id: Int!): Note!
+  updateConcept(input: UpdateConceptInput!): Concept!
+  updateNote(input: UpdateNoteInput!): Note!
+}
+
+type Note {
+  concepts: [Concept!]!
+  content: String!
+  id: Int!
+  title: String!
+}
+
+type Query {
+  concept(id: Int!): Concept!
+  concepts: [Concept!]!
+  note(id: Int!): Note!
+  notes: [Note!]!
+}
+
+input UpdateConceptInput {
+  id: Int!
+  name: String
+  noteIds: [Int!]
+}
+
+input UpdateNoteInput {
+  conceptIds: [Int!]
+  content: String
+  id: Int!
+  title: String
+}
