@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Note } from '../../notes/models/note.model.js';
+import { ConceptRelationship } from '../../relationships/models/concept-relationship.model.js';
 
 @ObjectType()
 export class Concept {
@@ -11,4 +12,10 @@ export class Concept {
 
   @Field(() => [Note])
   notes: Note[];
+
+  @Field(() => [ConceptRelationship])
+  relationshipsFrom: ConceptRelationship[];
+
+  @Field(() => [ConceptRelationship])
+  relationshipsTo: ConceptRelationship[];
 }

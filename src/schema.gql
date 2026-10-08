@@ -6,11 +6,28 @@ type Concept {
   id: Int!
   name: String!
   notes: [Note!]!
+  relationshipsFrom: [ConceptRelationship!]!
+  relationshipsTo: [ConceptRelationship!]!
+}
+
+type ConceptRelationship {
+  fromConcept: Concept!
+  fromConceptId: Int!
+  id: Int!
+  toConcept: Concept!
+  toConceptId: Int!
+  type: String!
 }
 
 input CreateConceptInput {
   name: String!
   noteIds: [Int!]
+}
+
+input CreateConceptRelationshipInput {
+  fromConceptId: Int!
+  toConceptId: Int!
+  type: String!
 }
 
 input CreateNoteInput {
@@ -19,13 +36,22 @@ input CreateNoteInput {
   title: String!
 }
 
+enum Direction {
+  BOTH
+  INCOMING
+  OUTGOING
+}
+
 type Mutation {
   createConcept(input: CreateConceptInput!): Concept!
   createNote(input: CreateNoteInput!): Note!
+  createRelationship(input: CreateConceptRelationshipInput!): ConceptRelationship!
   deleteConcept(id: Int!): Concept!
   deleteNote(id: Int!): Note!
+  deleteRelationship(id: Float!): ConceptRelationship!
   updateConcept(input: UpdateConceptInput!): Concept!
   updateNote(input: UpdateNoteInput!): Note!
+  updateRelationship(input: UpdateConceptRelationshipInput!): ConceptRelationship!
 }
 
 type Note {
@@ -40,12 +66,34 @@ type Query {
   concepts: [Concept!]!
   note(id: Int!): Note!
   notes: [Note!]!
+  relationship(id: Float!): ConceptRelationship!
+  relationships: [ConceptRelationship!]!
+  traverse(input: TraverseInput!): [TraversedConcept!]!
+}
+
+input TraverseInput {
+  direction: Direction!
+  maxDepth: Int!
+  startId: Int!
+}
+
+type TraversedConcept {
+  depth: Int!
+  id: Int!
+  name: String!
 }
 
 input UpdateConceptInput {
   id: Int!
   name: String
   noteIds: [Int!]
+}
+
+input UpdateConceptRelationshipInput {
+  fromConceptId: Int
+  id: Int!
+  toConceptId: Int
+  type: String
 }
 
 input UpdateNoteInput {

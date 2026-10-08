@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Note: 'Note',
-  Concept: 'Concept'
+  Concept: 'Concept',
+  ConceptRelationship: 'ConceptRelationship'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -86,6 +87,16 @@ export const ConceptScalarFieldEnum = {
 } as const
 
 export type ConceptScalarFieldEnum = (typeof ConceptScalarFieldEnum)[keyof typeof ConceptScalarFieldEnum]
+
+
+export const ConceptRelationshipScalarFieldEnum = {
+  id: 'id',
+  fromConceptId: 'fromConceptId',
+  toConceptId: 'toConceptId',
+  type: 'type'
+} as const
+
+export type ConceptRelationshipScalarFieldEnum = (typeof ConceptRelationshipScalarFieldEnum)[keyof typeof ConceptRelationshipScalarFieldEnum]
 
 
 export const SortOrder = {

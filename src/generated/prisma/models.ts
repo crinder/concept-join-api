@@ -10,4 +10,5 @@
  */
 export type * from './models/Note.js'
 export type * from './models/Concept.js'
+export type * from './models/ConceptRelationship.js'
 export type * from './commonInputTypes.js'

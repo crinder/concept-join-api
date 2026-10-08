@@ -193,12 +193,16 @@ export type ConceptWhereInput = {
   id?: Prisma.IntFilter<"Concept"> | number
   name?: Prisma.StringFilter<"Concept"> | string
   notes?: Prisma.NoteListRelationFilter
+  relationshipsFrom?: Prisma.ConceptRelationshipListRelationFilter
+  relationshipsTo?: Prisma.ConceptRelationshipListRelationFilter
 }
 
 export type ConceptOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   notes?: Prisma.NoteOrderByRelationAggregateInput
+  relationshipsFrom?: Prisma.ConceptRelationshipOrderByRelationAggregateInput
+  relationshipsTo?: Prisma.ConceptRelationshipOrderByRelationAggregateInput
 }
 
 export type ConceptWhereUniqueInput = Prisma.AtLeast<{
@@ -208,6 +212,8 @@ export type ConceptWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ConceptWhereInput[]
   NOT?: Prisma.ConceptWhereInput | Prisma.ConceptWhereInput[]
   notes?: Prisma.NoteListRelationFilter
+  relationshipsFrom?: Prisma.ConceptRelationshipListRelationFilter
+  relationshipsTo?: Prisma.ConceptRelationshipListRelationFilter
 }, "id" | "name">
 
 export type ConceptOrderByWithAggregationInput = {
@@ -231,23 +237,31 @@ export type ConceptScalarWhereWithAggregatesInput = {
 export type ConceptCreateInput = {
   name: string
   notes?: Prisma.NoteCreateNestedManyWithoutConceptsInput
+  relationshipsFrom?: Prisma.ConceptRelationshipCreateNestedManyWithoutFromConceptInput
+  relationshipsTo?: Prisma.ConceptRelationshipCreateNestedManyWithoutToConceptInput
 }
 
 export type ConceptUncheckedCreateInput = {
   id?: number
   name: string
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutConceptsInput
+  relationshipsFrom?: Prisma.ConceptRelationshipUncheckedCreateNestedManyWithoutFromConceptInput
+  relationshipsTo?: Prisma.ConceptRelationshipUncheckedCreateNestedManyWithoutToConceptInput
 }
 
 export type ConceptUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NoteUpdateManyWithoutConceptsNestedInput
+  relationshipsFrom?: Prisma.ConceptRelationshipUpdateManyWithoutFromConceptNestedInput
+  relationshipsTo?: Prisma.ConceptRelationshipUpdateManyWithoutToConceptNestedInput
 }
 
 export type ConceptUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NoteUncheckedUpdateManyWithoutConceptsNestedInput
+  relationshipsFrom?: Prisma.ConceptRelationshipUncheckedUpdateManyWithoutFromConceptNestedInput
+  relationshipsTo?: Prisma.ConceptRelationshipUncheckedUpdateManyWithoutToConceptNestedInput
 }
 
 export type ConceptCreateManyInput = {
@@ -297,6 +311,11 @@ export type ConceptSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type ConceptScalarRelationFilter = {
+  is?: Prisma.ConceptWhereInput
+  isNot?: Prisma.ConceptWhereInput
+}
+
 export type ConceptCreateNestedManyWithoutNotesInput = {
   create?: Prisma.XOR<Prisma.ConceptCreateWithoutNotesInput, Prisma.ConceptUncheckedCreateWithoutNotesInput> | Prisma.ConceptCreateWithoutNotesInput[] | Prisma.ConceptUncheckedCreateWithoutNotesInput[]
   connectOrCreate?: Prisma.ConceptCreateOrConnectWithoutNotesInput | Prisma.ConceptCreateOrConnectWithoutNotesInput[]
@@ -335,13 +354,45 @@ export type ConceptUncheckedUpdateManyWithoutNotesNestedInput = {
   deleteMany?: Prisma.ConceptScalarWhereInput | Prisma.ConceptScalarWhereInput[]
 }
 
+export type ConceptCreateNestedOneWithoutRelationshipsFromInput = {
+  create?: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsFromInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsFromInput>
+  connectOrCreate?: Prisma.ConceptCreateOrConnectWithoutRelationshipsFromInput
+  connect?: Prisma.ConceptWhereUniqueInput
+}
+
+export type ConceptCreateNestedOneWithoutRelationshipsToInput = {
+  create?: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsToInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsToInput>
+  connectOrCreate?: Prisma.ConceptCreateOrConnectWithoutRelationshipsToInput
+  connect?: Prisma.ConceptWhereUniqueInput
+}
+
+export type ConceptUpdateOneRequiredWithoutRelationshipsFromNestedInput = {
+  create?: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsFromInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsFromInput>
+  connectOrCreate?: Prisma.ConceptCreateOrConnectWithoutRelationshipsFromInput
+  upsert?: Prisma.ConceptUpsertWithoutRelationshipsFromInput
+  connect?: Prisma.ConceptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ConceptUpdateToOneWithWhereWithoutRelationshipsFromInput, Prisma.ConceptUpdateWithoutRelationshipsFromInput>, Prisma.ConceptUncheckedUpdateWithoutRelationshipsFromInput>
+}
+
+export type ConceptUpdateOneRequiredWithoutRelationshipsToNestedInput = {
+  create?: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsToInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsToInput>
+  connectOrCreate?: Prisma.ConceptCreateOrConnectWithoutRelationshipsToInput
+  upsert?: Prisma.ConceptUpsertWithoutRelationshipsToInput
+  connect?: Prisma.ConceptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ConceptUpdateToOneWithWhereWithoutRelationshipsToInput, Prisma.ConceptUpdateWithoutRelationshipsToInput>, Prisma.ConceptUncheckedUpdateWithoutRelationshipsToInput>
+}
+
 export type ConceptCreateWithoutNotesInput = {
   name: string
+  relationshipsFrom?: Prisma.ConceptRelationshipCreateNestedManyWithoutFromConceptInput
+  relationshipsTo?: Prisma.ConceptRelationshipCreateNestedManyWithoutToConceptInput
 }
 
 export type ConceptUncheckedCreateWithoutNotesInput = {
   id?: number
   name: string
+  relationshipsFrom?: Prisma.ConceptRelationshipUncheckedCreateNestedManyWithoutFromConceptInput
+  relationshipsTo?: Prisma.ConceptRelationshipUncheckedCreateNestedManyWithoutToConceptInput
 }
 
 export type ConceptCreateOrConnectWithoutNotesInput = {
@@ -373,13 +424,101 @@ export type ConceptScalarWhereInput = {
   name?: Prisma.StringFilter<"Concept"> | string
 }
 
+export type ConceptCreateWithoutRelationshipsFromInput = {
+  name: string
+  notes?: Prisma.NoteCreateNestedManyWithoutConceptsInput
+  relationshipsTo?: Prisma.ConceptRelationshipCreateNestedManyWithoutToConceptInput
+}
+
+export type ConceptUncheckedCreateWithoutRelationshipsFromInput = {
+  id?: number
+  name: string
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutConceptsInput
+  relationshipsTo?: Prisma.ConceptRelationshipUncheckedCreateNestedManyWithoutToConceptInput
+}
+
+export type ConceptCreateOrConnectWithoutRelationshipsFromInput = {
+  where: Prisma.ConceptWhereUniqueInput
+  create: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsFromInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsFromInput>
+}
+
+export type ConceptCreateWithoutRelationshipsToInput = {
+  name: string
+  notes?: Prisma.NoteCreateNestedManyWithoutConceptsInput
+  relationshipsFrom?: Prisma.ConceptRelationshipCreateNestedManyWithoutFromConceptInput
+}
+
+export type ConceptUncheckedCreateWithoutRelationshipsToInput = {
+  id?: number
+  name: string
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutConceptsInput
+  relationshipsFrom?: Prisma.ConceptRelationshipUncheckedCreateNestedManyWithoutFromConceptInput
+}
+
+export type ConceptCreateOrConnectWithoutRelationshipsToInput = {
+  where: Prisma.ConceptWhereUniqueInput
+  create: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsToInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsToInput>
+}
+
+export type ConceptUpsertWithoutRelationshipsFromInput = {
+  update: Prisma.XOR<Prisma.ConceptUpdateWithoutRelationshipsFromInput, Prisma.ConceptUncheckedUpdateWithoutRelationshipsFromInput>
+  create: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsFromInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsFromInput>
+  where?: Prisma.ConceptWhereInput
+}
+
+export type ConceptUpdateToOneWithWhereWithoutRelationshipsFromInput = {
+  where?: Prisma.ConceptWhereInput
+  data: Prisma.XOR<Prisma.ConceptUpdateWithoutRelationshipsFromInput, Prisma.ConceptUncheckedUpdateWithoutRelationshipsFromInput>
+}
+
+export type ConceptUpdateWithoutRelationshipsFromInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUpdateManyWithoutConceptsNestedInput
+  relationshipsTo?: Prisma.ConceptRelationshipUpdateManyWithoutToConceptNestedInput
+}
+
+export type ConceptUncheckedUpdateWithoutRelationshipsFromInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutConceptsNestedInput
+  relationshipsTo?: Prisma.ConceptRelationshipUncheckedUpdateManyWithoutToConceptNestedInput
+}
+
+export type ConceptUpsertWithoutRelationshipsToInput = {
+  update: Prisma.XOR<Prisma.ConceptUpdateWithoutRelationshipsToInput, Prisma.ConceptUncheckedUpdateWithoutRelationshipsToInput>
+  create: Prisma.XOR<Prisma.ConceptCreateWithoutRelationshipsToInput, Prisma.ConceptUncheckedCreateWithoutRelationshipsToInput>
+  where?: Prisma.ConceptWhereInput
+}
+
+export type ConceptUpdateToOneWithWhereWithoutRelationshipsToInput = {
+  where?: Prisma.ConceptWhereInput
+  data: Prisma.XOR<Prisma.ConceptUpdateWithoutRelationshipsToInput, Prisma.ConceptUncheckedUpdateWithoutRelationshipsToInput>
+}
+
+export type ConceptUpdateWithoutRelationshipsToInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUpdateManyWithoutConceptsNestedInput
+  relationshipsFrom?: Prisma.ConceptRelationshipUpdateManyWithoutFromConceptNestedInput
+}
+
+export type ConceptUncheckedUpdateWithoutRelationshipsToInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutConceptsNestedInput
+  relationshipsFrom?: Prisma.ConceptRelationshipUncheckedUpdateManyWithoutFromConceptNestedInput
+}
+
 export type ConceptUpdateWithoutNotesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  relationshipsFrom?: Prisma.ConceptRelationshipUpdateManyWithoutFromConceptNestedInput
+  relationshipsTo?: Prisma.ConceptRelationshipUpdateManyWithoutToConceptNestedInput
 }
 
 export type ConceptUncheckedUpdateWithoutNotesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  relationshipsFrom?: Prisma.ConceptRelationshipUncheckedUpdateManyWithoutFromConceptNestedInput
+  relationshipsTo?: Prisma.ConceptRelationshipUncheckedUpdateManyWithoutToConceptNestedInput
 }
 
 export type ConceptUncheckedUpdateManyWithoutNotesInput = {
@@ -394,10 +533,14 @@ export type ConceptUncheckedUpdateManyWithoutNotesInput = {
 
 export type ConceptCountOutputType = {
   notes: number
+  relationshipsFrom: number
+  relationshipsTo: number
 }
 
 export type ConceptCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notes?: boolean | ConceptCountOutputTypeCountNotesArgs
+  relationshipsFrom?: boolean | ConceptCountOutputTypeCountRelationshipsFromArgs
+  relationshipsTo?: boolean | ConceptCountOutputTypeCountRelationshipsToArgs
 }
 
 /**
@@ -417,11 +560,27 @@ export type ConceptCountOutputTypeCountNotesArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.NoteWhereInput
 }
 
+/**
+ * ConceptCountOutputType without action
+ */
+export type ConceptCountOutputTypeCountRelationshipsFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConceptRelationshipWhereInput
+}
+
+/**
+ * ConceptCountOutputType without action
+ */
+export type ConceptCountOutputTypeCountRelationshipsToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConceptRelationshipWhereInput
+}
+
 
 export type ConceptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   notes?: boolean | Prisma.Concept$notesArgs<ExtArgs>
+  relationshipsFrom?: boolean | Prisma.Concept$relationshipsFromArgs<ExtArgs>
+  relationshipsTo?: boolean | Prisma.Concept$relationshipsToArgs<ExtArgs>
   _count?: boolean | Prisma.ConceptCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["concept"]>
 
@@ -443,6 +602,8 @@ export type ConceptSelectScalar = {
 export type ConceptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["concept"]>
 export type ConceptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notes?: boolean | Prisma.Concept$notesArgs<ExtArgs>
+  relationshipsFrom?: boolean | Prisma.Concept$relationshipsFromArgs<ExtArgs>
+  relationshipsTo?: boolean | Prisma.Concept$relationshipsToArgs<ExtArgs>
   _count?: boolean | Prisma.ConceptCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ConceptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -452,6 +613,8 @@ export type $ConceptPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Concept"
   objects: {
     notes: Prisma.$NotePayload<ExtArgs>[]
+    relationshipsFrom: Prisma.$ConceptRelationshipPayload<ExtArgs>[]
+    relationshipsTo: Prisma.$ConceptRelationshipPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -851,6 +1014,8 @@ readonly fields: ConceptFieldRefs;
 export interface Prisma__ConceptClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   notes<T extends Prisma.Concept$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Concept$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  relationshipsFrom<T extends Prisma.Concept$relationshipsFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Concept$relationshipsFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConceptRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  relationshipsTo<T extends Prisma.Concept$relationshipsToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Concept$relationshipsToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConceptRelationshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1296,6 +1461,54 @@ export type Concept$notesArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.NoteScalarFieldEnum | Prisma.NoteScalarFieldEnum[]
+}
+
+/**
+ * Concept.relationshipsFrom
+ */
+export type Concept$relationshipsFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConceptRelationship
+   */
+  select?: Prisma.ConceptRelationshipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConceptRelationship
+   */
+  omit?: Prisma.ConceptRelationshipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConceptRelationshipInclude<ExtArgs> | null
+  where?: Prisma.ConceptRelationshipWhereInput
+  orderBy?: Prisma.ConceptRelationshipOrderByWithRelationInput | Prisma.ConceptRelationshipOrderByWithRelationInput[]
+  cursor?: Prisma.ConceptRelationshipWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConceptRelationshipScalarFieldEnum | Prisma.ConceptRelationshipScalarFieldEnum[]
+}
+
+/**
+ * Concept.relationshipsTo
+ */
+export type Concept$relationshipsToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConceptRelationship
+   */
+  select?: Prisma.ConceptRelationshipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConceptRelationship
+   */
+  omit?: Prisma.ConceptRelationshipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConceptRelationshipInclude<ExtArgs> | null
+  where?: Prisma.ConceptRelationshipWhereInput
+  orderBy?: Prisma.ConceptRelationshipOrderByWithRelationInput | Prisma.ConceptRelationshipOrderByWithRelationInput[]
+  cursor?: Prisma.ConceptRelationshipWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConceptRelationshipScalarFieldEnum | Prisma.ConceptRelationshipScalarFieldEnum[]
 }
 
 /**

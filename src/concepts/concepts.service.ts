@@ -19,6 +19,16 @@ export class ConceptsService {
       where: { id },
       include: {
         notes: true,
+        relationshipsFrom: {
+          include: {
+            toConcept: true,
+          },
+        },
+        relationshipsTo: {
+          include: {
+            fromConcept: true,
+          },
+        },
       },
     });
   }

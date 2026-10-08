@@ -51,3 +51,8 @@ export type Note = Prisma.NoteModel
  * 
  */
 export type Concept = Prisma.ConceptModel
+/**
+ * Model ConceptRelationship
+ * 
+ */
+export type ConceptRelationship = Prisma.ConceptRelationshipModel

@@ -398,7 +398,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Note: 'Note',
-  Concept: 'Concept'
+  Concept: 'Concept',
+  ConceptRelationship: 'ConceptRelationship'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -414,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "note" | "concept"
+    modelProps: "note" | "concept" | "conceptRelationship"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -566,6 +567,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ConceptRelationship: {
+      payload: Prisma.$ConceptRelationshipPayload<ExtArgs>
+      fields: Prisma.ConceptRelationshipFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ConceptRelationshipFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ConceptRelationshipFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>
+        }
+        findFirst: {
+          args: Prisma.ConceptRelationshipFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ConceptRelationshipFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>
+        }
+        findMany: {
+          args: Prisma.ConceptRelationshipFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>[]
+        }
+        create: {
+          args: Prisma.ConceptRelationshipCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>
+        }
+        createMany: {
+          args: Prisma.ConceptRelationshipCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ConceptRelationshipCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>[]
+        }
+        delete: {
+          args: Prisma.ConceptRelationshipDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>
+        }
+        update: {
+          args: Prisma.ConceptRelationshipUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>
+        }
+        deleteMany: {
+          args: Prisma.ConceptRelationshipDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ConceptRelationshipUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ConceptRelationshipUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>[]
+        }
+        upsert: {
+          args: Prisma.ConceptRelationshipUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConceptRelationshipPayload>
+        }
+        aggregate: {
+          args: Prisma.ConceptRelationshipAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateConceptRelationship>
+        }
+        groupBy: {
+          args: Prisma.ConceptRelationshipGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConceptRelationshipGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ConceptRelationshipCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConceptRelationshipCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -620,6 +695,16 @@ export const ConceptScalarFieldEnum = {
 } as const
 
 export type ConceptScalarFieldEnum = (typeof ConceptScalarFieldEnum)[keyof typeof ConceptScalarFieldEnum]
+
+
+export const ConceptRelationshipScalarFieldEnum = {
+  id: 'id',
+  fromConceptId: 'fromConceptId',
+  toConceptId: 'toConceptId',
+  type: 'type'
+} as const
+
+export type ConceptRelationshipScalarFieldEnum = (typeof ConceptRelationshipScalarFieldEnum)[keyof typeof ConceptRelationshipScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -846,6 +931,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   note?: Prisma.NoteOmit
   concept?: Prisma.ConceptOmit
+  conceptRelationship?: Prisma.ConceptRelationshipOmit
 }
 
 /* Types for Logging */

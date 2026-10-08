@@ -12,10 +12,26 @@ model Note {
   title    String
   content  String?
   concepts Concept[]
+  
 }
 
 model Concept {
   id    Int    @id @default(autoincrement())
   name  String @unique
   notes Note[]
+  relationshipsFrom ConceptRelationship[] @relation("ConceptFrom")
+  relationshipsTo   ConceptRelationship[] @relation("ConceptTo")
 }
+
+model ConceptRelationship {
+  id            Int    @id @default(autoincrement())
+  fromConceptId Int
+  toConceptId   Int
+  type          String
+
+  fromConcept Concept @relation("ConceptFrom", fields: [fromConceptId], references: [id])
+  toConcept   Concept @relation("ConceptTo", fields: [toConceptId], references: [id])
+
+  @@unique([fromConceptId, toConceptId, type])
+}
+
